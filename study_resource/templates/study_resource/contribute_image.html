@@ -1,0 +1,162 @@
+{% extends 'main/homebase.html' %}
+{% load static %}
+  
+
+
+{% block content %}
+
+<style type="text/css">
+    .ps-btn{
+        background-color: #ed017f !important;
+    }
+    .ps-btn:hover{
+        background-color: #9a0052 !important;
+        color: #fff;
+    }
+
+    .upload-box{
+        font-size: 16px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 5px 5px 10px black;
+        height: 40px;
+        width: 100%;
+        outline: none;
+    }
+    ::-webkit-file-upload-button{
+        color: #fff;
+        background-color: #ed017f;
+        cursor: pointer;
+        border-radius: 5px;
+        border: none;
+
+        box-shadow: 1px 0 1px 1px #9a0052;
+        outline: none;
+        height: 35px;
+        margin-top: -1px;
+
+    }
+    ::-webkit-file-upload-button:hover{
+        color: #fff;
+        background-color: #9a0052 !important;
+        box-shadow: 1px 0 1px 1px #ed017f;
+
+    }
+    .alert{
+        box-shadow: 5px 5px 10px #111;
+        border: none;
+    }
+    .btn{
+        background-color: #ed017f !important;
+        border-color: #ed017f !important;
+        border: none;
+    }
+    .btn:hover{
+        background-color: #9a0052 !important;
+        color: #fff;
+    }
+    @keyframes show-toast {
+        0%, 100%{
+        transform: translateY(0);
+        }
+        50%{
+            transform: translateY(25px);
+        }
+    }
+
+
+    .notification.is-toast {
+        visibility: visible;
+        z-index: 1000;
+        animation: show-toast 3s ease-out infinite;
+        
+    }
+</style>
+
+<section class="ps-section--account ps-checkout">
+
+    <div class="container">
+<div class="ps-section__content">
+        <form class="ps-form--checkout" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="ps-form__content">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                        <div class="ps-block--shipping">
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="ps-block--shipping">
+                            
+                            <h4>Contribute Image to ({{ study_resource.title }}) Resource</h4>
+                            <div class="ps-block--payment-method">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                         <div class="notification is-success is-toast alert alert-{{message.tags}} text-center" role="alert" style="background-color: #1DB954; color: #fff; border-radius: 6px; font-weight: 600;">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                <div class="ps-tabs">
+                                    <form class="ps-form--visa" method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label></label>
+                                                        <div class="row">
+                                                           
+                                                        </div>
+
+                                                        
+            
+                                            
+                                        
+                               <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label>Upload Image</label><br />
+                                                    <input type="file"  name="study_file" class="fcorm-control upload-box" accept="image/*"> 
+                                                </div>
+                                            </div>
+                                            
+                                        
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="form-group submit">
+                                <button class="ps-btn ps-btn--fullwidth">Submit</button>
+                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                                                                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="form-group submit" style="justify-content: space-between;">
+                            <a href=""><button class="btn btn-success"><i class="icon-back"></i> Back</button></a>
+                            <a href="{% url 'main:index' %}"><button class="btn btn-success" style="justify-content: right; float: right;"><i class="icon-home"></i> Home</button></a>
+                        </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}
+

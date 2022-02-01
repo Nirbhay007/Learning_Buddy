@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head style="background-color: # !important">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Learning Buddy</title>
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/plugins/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/fonts/Linearicons/Linearicons/Font/demo-files/demo.css' %}">
+    <link rel="stylesheet" href="{% static 'main/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/plugins/owl-carousel/assets/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/plugins/owl-carousel/assets/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/plugins/slick/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'main/plugins/nouislider/nouislider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/plugins/lightGallery-master/dist/css/lightgallery.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css' %}">
+    <link rel="stylesheet" href="{% static 'main/plugins/select2/dist/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/autopart.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/vendor.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/styles.css' %}">
+</head>
+
+<body>
+
+    <style type="text/css">
+    .current-menu-item:hover{
+        background-color: #ed017f !important;
+        color: #fff;
+    }
+    .mega-menu h4:hover{
+        color: #ed017f !important;
+
+    }
+</style>
+
+    
+    <div class="ps-panel--sidebarx" id="cart-mobile" >
+        
+        
+    </div>
+    
+    <div class="navigation--list" style="background-color: #9a0052 !important; color: #fff">
+        <div class="navigation__content"><a class="navigation__item ps-toggle--sidebar" href="#menu-mobile"><i class="icon-menu"></i><span> Menu</span></a>
+        <a class="navigation__item ps-toggle--sidebarm" href="{% url 'main:profile' %}"><i class="icon-user"></i><span> Profile</span></a>
+
+        <a class="navigation__item" href="/"><i class="icon-home"></i><span> Home</span></a>
+
+        <a class="navigation__item ps-toggle--sidebar" href="#search-sidebar"><i class="icon-magnifier"></i><span> Search</span></a>
+
+        <a class="navigation__item" href="{% url 'main:sign_out' %}"><i class="icon-lock"></i><span> Log Out</span></a></div>
+        <a class="navigation__item" href="{% url 'main:landing_page' %}"><i class="icon-lock"></i><span>Landing Page</span></a></div>
+
+    </div>
+    <div class="ps-panel--sidebar" id="search-sidebar" style="background-color: #fff;">
+        <div class="ps-panel__header" style="background-color: #9a0052 !important;">
+            <form class="ps-form--search-mobile" method="post" action="/search">
+                    {% csrf_token %}
+                <div class="form-group--nest">
+                    <input name="query" class="form-control" type="text" placeholder="Enter any topic/subject/course...">
+                    <button><i class="icon-magnifier"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="navigation__content"></div>
+    </div>
+    <div class="ps-panel--sidebar" id="menu-mobile" >
+        <div class="ps-panel__header" style="background-color: #9a0052 !important;">
+            <h3>Menu</h3>
+        </div>
+        <div class="ps-panel__content">
+            <ul class="menu--mobile">
+                <li class="menu-item-has-children"><a href="/">Home</a>
+                    <ul class="menu--mobile">
+                        <li class="current-menu-item menu-item-has-children"><a href="{% url 'cbt:setup_cbt' %}">CBT</a>
+                        </li>
+                        <li class="current-menu-item menu-item-has-children"><a href="{% url 'study_resource:setup_study' %}">Study</a>
+                        </li>
+                        <li class="current-menu-item menu-item-has-children"><a href="{% url 'compete:compete' %}">Compete</a>
+                        </li>
+                         <li class="current-menu-item menu-item-has-children"><a href="{% url 'question:share_question' %}">Obj Question</a>
+                        </li>
+                        <li class="current-menu-item menu-item-has-children"><a href="{% url 'question:share_question' %}">Theory Question</a>
+                        </li>
+                        <li class="current-menu-item menu-item-has-children"><a href="{% url 'study_resource:share_resource' %}">Share Resource</a>
+                        </li>
+                    </ul>
+                            
+                
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    
+    
+{% block content %}
+
+{% endblock %}
+
+
+
+
+    <footer class="ps-footer">
+        <div class="ps-container">
+            <div class="ps-footer__widgets">
+               
+            </div>
+            
+            <div class="ps-footer__copyright" style="">
+                <p>© 2022 Mit Muzaffarpur</p>
+                
+            </div>
+        </div>
+    </footer>
+    <div id="back2top"><i class="pe-7s-angle-up"></i></div>
+    <div class="ps-site-overlay"></div>
+    <div id="loader-wrapper">
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <div class="ps-search" id="site-search"><a class="ps-btn--close" href="#"></a>
+        <div class="ps-search__content">
+            <form class="ps-form--primary-search" method="post" action="/search">
+                <input class="form-control" type="text" placeholder="Search for...">
+                <button><i class="aroma-magnifying-glass"></i></button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="{% static 'main/plugins/jquery.min.js' %}"></script>
+    <script src="{% static 'main/plugins/nouislider/nouislider.min.js' %}"></script>
+    <script src="{% static 'main/plugins/popper.min.js' %}"></script>
+    <script src="{% static 'main/plugins/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'main/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'main/plugins/imagesloaded.pkgd.min.j' %}s"></script>
+    <script src="{% static 'main/plugins/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'main/plugins/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'main/plugins/jquery.matchHeight-min.js' %}"></script>
+    <script src="{% static 'main/plugins/slick/slick/slick.min.js' %}"></script>
+    <script src="{% static 'main/plugins/jquery-bar-rating/dist/jquery.barrating.min.js' %}"></script>
+    <script src="{% static 'main/plugins/slick-animation.min.js' %}"></script>
+    <script src="{% static 'main/plugins/lightGallery-master/dist/js/lightgallery-all.min.js' %}"></script>
+    <script src="{% static 'main/plugins/sticky-sidebar/dist/sticky-sidebar.min.js' %}"></script>
+    <script src="{% static 'main/plugins/select2/dist/js/select2.full.min.js' %}"></script>
+    <script src="{% static 'main/plugins/gmap3.min.js' %}"></script>
+    <script src="{% static 'main/js/mains.js' %}"></script>
+<!-- style switcher js -->
+<script src="{% static 'main/js/style-switcher.js' %}"></script>
+    <!-- custom scripts-->
+    <script src="{% static 'main/js/main.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+{% extends 'main/homebase.html' %}
+{% load static %}
+  
+
+
+{% block content %}
+
+
+<style type="text/css">
+    .ps-btn{
+        background-color: #ed017f !important;
+    }
+    .ps-btn:hover{
+        background-color: #9a0052 !important;
+        color: #fff;
+    }
+    .alert{
+        box-shadow: 5px 5px 10px #111;
+        border: none;
+    }
+    .btn{
+        background-color: #ed017f !important;
+        border-color: #ed017f !important;
+        border: none;
+    }
+    .btn:hover{
+        background-color: #9a0052 !important;
+        color: #fff;
+    }
+    @keyframes show-toast {
+        0%, 100%{
+        transform: translateY(0);
+        }
+        50%{
+            transform: translateY(25px);
+        }
+    }
+
+
+    .notification.is-toast {
+        visibility: visible;
+        z-index: 1000;
+        animation: show-toast 3s ease-out infinite;
+        
+    }
+
+</style>
+
+<section class="ps-section--account ps-checkout">
+
+    <div class="container">
+<div class="ps-section__content">
+                    <form class="ps-form--checkout" method="post">
+                        {% csrf_token %}
+                        <div class="ps-form__content">
+                            <div class="row">
+                                
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ps-block--shipping">
+                                        
+                                        <h4>Contribute content to ({{ study_resource.title }}) Resource</h4>
+                                        <div class="ps-block--payment-method">
+                                            {% if messages %}
+                                            {% for message in messages %}
+                                                <div class="notification is-success is-toast alert alert-{{message.tags}} text-center" role="alert" style="background-color: #1DB954; color: #fff; border-radius: 6px; font-weight: 600;">
+                                                    {{ message }}
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                            <div class="ps-tabs">
+                                                <form class="ps-form--visa" method="post">
+                                                        {% csrf_token %}
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label></label>
+                                                                    <div class="row">
+                                                                       
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label>Content</label>
+                                                                        <div class="form-group__content">
+                                                                         <textarea name="content" class="form-control" rows="7" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                                                    </div>
+                        
+                                                        
+                                                                    
+                                                           
+                                                        </div>
+                                                        <div class="form-group submit">
+                                                            <button class="ps-btn ps-btn--fullwidth">Submit</button>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                                                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-group submit" style="justify-content: space-between;">
+                                        <a href=""><button class="btn btn-success"><i class="icon-back"></i> Back</button></a>
+                                        <a href="{% url 'main:index' %}"><button class="btn btn-success" style="justify-content: right; float: right;"><i class="icon-home"></i> Home</button></a>
+                                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}
+

@@ -1,0 +1,119 @@
+{% extends 'main/base.html' %} {% load static %} {% block content %}
+<style type="text/css">
+  .ps-btn {
+    background-color: #ed017f !important;
+    color: #000000 !important;
+  }
+  .ps-btn:hover {
+    background-color: #9a0052 !important;
+    color: #fff !important;
+  }
+  .btn-success {
+    background-color: #9a0052 !important;
+    color: #fff !important;
+    border: none;
+  }
+  .btn-success:hover {
+    background-color: #ed017f !important;
+    color: #000000 !important;
+    border: none;
+  }
+  .btn-success a:hover {
+    color: #000000 !important;
+    border: none;
+  }
+  .alert {
+    box-shadow: 5px 5px 10px #111;
+    border: none;
+  }
+  @keyframes show-toast {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(25px);
+    }
+  }
+
+  .notification.is-toast {
+    visibility: visible;
+    z-index: 1000;
+    animation: show-toast 3s ease-out infinite;
+  }
+</style>
+
+<div class="ps-my-account" style="margin-top: -90px">
+  <div class="container">
+    <form class="ps-form--account ps-tab-root" action="" method="post">
+      {% csrf_token %}
+      <ul class="ps-tab-list">
+        <li class="active"><a href="#sign-in">Sign-in</a></li>
+      </ul>
+      {% if messages %} {% for message in messages %}
+      <div
+        class="notification is-success is-toast alert alert-{{message.tags}} text-center"
+        role="alert"
+        style="
+          background-color: #1db954;
+          color: #fff;
+          border-radius: 6px;
+          font-weight: 600;
+        "
+      >
+        {{ message }}
+      </div>
+      {% endfor %} {% endif %}
+      <div class="ps-tabs">
+        <div class="ps-tab active" id="sign-in">
+          <div class="ps-form__content">
+            <h5>Log In To Your Account</h5>
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="text"
+                name="username"
+                placeholder="Username"
+                required="required"
+              />
+            </div>
+            <div class="form-group form-forgot">
+              <input
+                class="form-control"
+                type="password"
+                name="password"
+                placeholder="Password"
+                required="required"
+              /><a href="">Forgot?</a>
+            </div>
+            <div class="form-group">
+              <div class="ps-checkbox">
+                <input
+                  class="form-control"
+                  type="checkbox"
+                  id="remember-me"
+                  name="remember-me"
+                />
+                <label for="remember-me">Rememeber me</label>
+              </div>
+            </div>
+            <div class="form-group submtit">
+              <button class="ps-btn ps-btn--fullwidth">Login</button>
+            </div>
+          </div>
+          <div class="ps-form__footer">
+            <p>
+              Don't have an account?
+              <button class="btn btn-success">
+                <a href="{% url 'main:sign_up' %}">Create Account</a>
+              </button>
+            </p>
+          </div>
+        </div>
+        <div class="ps-tab" id="register"></div>
+      </div>
+    </form>
+
+    {% endblock %}
+  </div>
+</div>

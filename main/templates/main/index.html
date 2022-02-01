@@ -1,0 +1,346 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+{% include "main/header.html" %}
+<style type="text/css">
+    .alert{
+        box-shadow: 5px 5px 10px #111;
+        border: none;
+
+    }
+    @keyframes show-toast {
+        0%, 100%{
+        transform: translateY(0);
+        }
+        50%{
+            transform: translateY(25px);
+        }
+    }
+
+
+    .notification.is-toast {
+        visibility: visible;
+        z-index: 1000;
+        animation: show-toast 3s ease-out infinite;
+        
+    }
+
+    .accordion-item{
+        background-color: #9a0052;
+        border-right: 0.4rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        box-shadow: .5rem 2px .5rem rgba(0,0,0, .1)
+    }
+    .accordion-link{
+        font-size: 1.6rem;
+        color: #fff;
+        text-decoration: none;
+        background-color: #9a0052;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+    }
+    .accordion-link i{
+        color: #e7d5ff;
+        padding: .5rem;
+    }
+    .accordion-link .icon-minus{
+        display: none;
+    }
+    .answer{
+        max-height: 0;
+        overflow: hidden;
+        position: relative;
+        background-color: #eaeaea;
+        transition: max-height 650ms;
+    }
+    .answer:before{
+        content: "";
+        position: absolute;
+        width: .6rem;
+        height: 90%;
+        background-color: #000000;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+    .answer p{
+        color: #fff;
+        font-size: 1.4rem;
+        padding: 2rem;
+    }
+    .accordion-item:target .answer{
+        max-height: 100%;
+    }
+    .accordion-item:target .accordion-link .icon-plus{
+        display: none;
+    }
+    .accordion-item:target .accordion-link .icon-minus{
+        display: block;
+        }
+</style>
+<div class="ps-form__content">
+    <div class="ps-container">
+
+        <div style="margin-top: 10px" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="notification is-success is-toast alert alert-{{message.tags}}  text-center" role="alert" style="background-color: #1DB954; color: #fff; border-radius: 6px; font-weight: 600;">
+                {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+</div>
+<section class="ps-section--account ps-checkout" style="margin-top: -40px">
+
+    <div class="container">
+<div class="ps-section--vendor ps-vendor-about">
+            <div class="container">
+                <div class="ps-section__header">
+                    <p>WELCOME TO LEARNING BUDDY</p>
+                    <h4>Learning Buddy is a cloud based solution for resource sharing <br> and student centric interactive web application.</h4>
+                </div>
+                <div class="ps-section__content">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 ">
+                            <div class="ps-block--icon-box-2">
+                                <div class="ps-block__thumbnail"><img src="https://thetalononline.org/wp-content/uploads/2020/09/Distance-Learning-Article-PIC.png" alt=""></div>
+                                <div class="ps-block__content">
+                                    <h4>All Study Resource</h4>
+                                    <div class="ps-block__desc" data-mh="about-desc">
+                                        <p>Practice from engaging past questions published by fellow students like you.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 ">
+                            <div class="ps-block--icon-box-2">
+                                <div class="ps-block__thumbnail"><img src="https://thumbs.dreamstime.com/b/happy-student-holding-paper-excellent-test-exam-result-vector-illustration-happy-student-holding-paper-excellent-test-130046995.jpg" alt=""></div>
+                                <div class="ps-block__content">
+                                    <h4>Better Exam Grades</h4>
+                                    <div class="ps-block__desc" data-mh="about-desc">
+                                        <p>Get real practice resources, study with friends and pass with flying colours.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 ">
+                            <div class="ps-block--icon-box-2">
+                                <div class="ps-block__thumbnail"><img src="{% static 'landing/images/pnghut_pedagogy-massive-open-online-course-education-university-student-diagram.png' %}" alt=""></div>
+                                <div class="ps-block__content">
+                                    <h4>Share Resources</h4>
+                                    <div class="ps-block__desc" data-mh="about-desc">
+                                        <p>Share study resources with fellow classmates, with just a single click </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 ">
+                            <div class="ps-block--icon-box-2">
+                                <div class="ps-block__thumbnail"><img src="https://image.freepik.com/free-vector/education-online-computer-desk-with-books-backpack-coronavirus-pandemic_24640-61498.jpg" alt=""></div>
+                                <div class="ps-block__content">
+                                    <h4>Practice Better</h4>
+                                    <div class="ps-block__desc" data-mh="about-desc">
+                                        <p>To practice Computer Based Tests from a wide range of resource available for you.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <!-- Start Faculty Area -->
+
+            <div class="ps-container">
+                <div class="accordion">
+                    <div class="accordion-item" id="question1">
+                        <a style="color: #fff" class="accordion-link" href="#question1">
+                            Resources For You
+                           <i class="icon-plus"></i>
+                           <i class="icon-minus"></i>
+                        </a>
+                        <div class="answer">
+                            <p><div class="row xps-block--payment-method col-lg-12" style="margin: auto;">
+                    {% for item in study_resources %}
+                    <div class="contact-item col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 ">
+                        <div style="background-color: #fff; overflow: hidden; box-shadow: 5px 5px 10px #111;  border: none" class="ps-block--category Wcontact-item-inner  hover-in-shadow"><a class="ps-block__overlay" href="{% url 'study_resource:resource_detail' item.slug %}"></a><img  style="height: 100px; width: 180; " src="{% static 'main/img/Rb726b85a8621f4b7f0f50b5e8d25c01a.png' %}" alt="">
+                            <h5>{{ item.title }}</h5>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                           
+                        </div>
+                    </div>
+                    <div class="accordion-item" id="question2">
+                        <a style="color: #fff" class="accordion-link" href="#question2">
+                            Contents for You
+                           <i class="icon-plus"></i>
+                           <i class="icon-minus"></i>
+                        </a>
+                        <div class="answer">
+                            <p><div class="row ps-block--payment-methodx col-lg-12">
+                                            {% for item in contents %}
+
+
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+                                
+                        <div class="ps-post ps-post--small-thumbnail">
+                        <div style="position: relative; padding-left: 40px" class="ps-post__thumbnail"><a class="ps-post__overlayx" href="{% url 'study_resource:content_detail' item.id %}"></a><img style="justify-content: center;align-items: center; " 
+                         src="{% static 'main/img/1.jpg' %}" alt="">
+                            <div ><i class=""></i></div>
+                        </div>
+                        <style type="text/css">
+                            .ps-post__top a:hover{
+                                color: #ed017f;
+                            }
+                        </style>
+                        <div class="ps-post__content" style="padding-left: 40px; padding-left: -20px">
+                            <div class="ps-post__top">
+                                <div class="ps-post__meta">
+                                </div><a class="ps-post__title" href="{% url 'study_resource:content_detail' item.id %}">{{ item.title }}</a>
+                                <h5><a  href="{% url 'study_resource:content_detail' item.id %}">{{ item.content|truncatewords:50 }}  ..continue reading</a></h5>
+                            </div>
+                            <div class="ps-post__bottom">
+                                <p>December 17, 2021 by<a href="#"> {{ item.contributor }}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+                                                
+
+                                            {% endfor %}
+                                        </div></p>
+                           
+                        </div>
+                    </div>
+
+                     <div class="accordion-item" id="question3">
+                        <a style="color: #fff" class="accordion-link" href="#question3">
+                            Videos For You
+                           <i class="icon-plus"></i>
+                           <i class="icon-minus"></i>
+                        </a>
+                        <div class="answer">
+                            <p><div class="row ps-block--payment-methodx col-lg-12" style="margin: auto;">
+                                            {% for item in videos %}
+
+                                    <div class="contact-item col-xl-4 col-lg-6 col-6 " style="text-align: center;">
+                                            <div class="ps-productX ">
+                                                <div class="ps-product__thumbnail" style="margin: auto;"><a href="{{ item.video.url }}"><video width="260" height="157" controls><source src="{{ item.video.url }}" type="video/mp4"></video> </a></div>
+                                         </div>         
+                                        </div>
+
+                                     {% endfor %}
+                                        </div></p>
+                           
+                        </div>
+                    </div>
+
+                     <div class="accordion-item" id="question4">
+                        <a style="color: #fff" class="accordion-link" href="#question4">
+                            Ebooks for You
+                           <i class="icon-plus"></i>
+                           <i class="icon-minus"></i>
+                        </a>
+                        <div class="answer">
+                            <p><div class="row ps-block--payment-methodx col-lg-12" style="margin: auto;">
+                                            {% for item in ebooks %}
+
+                                        <div class="contact-item col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 ">
+                                            <div style="background-color: #fff; overflow: hidden; box-shadow: 5px 5px 10px #111; overflow: hidden; border: none" class="ps-block--category contact-item-inner outer-shadow inner-shadow hover-in-shadow"><a class="ps-block__overlay" href="{{ item.ebook.url }}"></a><img  style="height: 100px; width: 180; overflow: hidden; " src="{% static 'main/img/5aa3ae359fc609199d0ff247.png' %}" alt="">
+                                                <h5>{{ study_resource.title }} ebook by {{ item.contributor }}</h5>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        </div></p>
+                           
+                        </div>
+                    </div>
+                     <div class="accordion-item" id="question5">
+                        <a  style="color: #fff"class="accordion-link" href="#question5">
+                            Links For You
+                           <i class="icon-plus"></i>
+                           <i class="icon-minus"></i>
+                        </a>
+                        <div class="answer">
+                            <p><div class="row ps-block--payment-methodx col-lg-12" style="margin: auto;">
+                                            {% for item in links %}
+
+                                        <div class="contact-item col-xl-4 col-lg-4 col-md-4 col-sm-4 col-6 " style="text-align: center;">
+                        
+                                                <div class="ps-product contact-item-inner outer-shadow "  style="background-color: #fff; overflow: hidden; box-shadow: 5px 5px 10px #111; overflow: hidden; border: none; padding-bottom: 5px">
+                                        <div style="margin: auto; background-color: #fff" class="ps-product__thumbnail"><a href="https://{{ item.link }}">{{ item.link }}
+                                
+                                        <h5>by {{ item.contributor }}</h5>
+
+                                        </a>
+                                        </div>
+
+                                        </div>
+                                        <br>
+                                    </div>
+
+
+                                    {% endfor %}
+                                        </div><br></p>
+                           
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="ps-section--vendor ps-vendor-faqs">
+            <div class="container">
+                <div class="ps-section__header">
+                    <p>Community based, Learning Buddy contents are completely created, updated and ranked by its fast growing community.</p>
+                    
+                </div>
+                <div class="ps-section__content">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ">
+                            <figure>
+                                <figcaption>Computer Based Test</figcaption>
+                                <p>How good are you with math?</p>
+                                <p>Have you taken Learning Buddy math cbt at 'difficult - level' ?</p>
+                                <p>With Learning Buddy u have the flexibility of switching from simple to complex CBTs on your favorite subject.</p>
+                            </figure>
+                            <figure>
+                                <figcaption>Share Resources</figcaption>
+                                <p>Having problems with any calculations?</p>
+                                 <p>Don't worry, Learning Buddys interactive platforms each for every subject..   How cool?</p>
+                                 <p>Now you have a pool of discussions you can always come back to for each subject</p>
+                            </figure>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ">
+                            <figure>
+                                <figcaption>Contribute to resource</figcaption>
+                                <p>You have a study material you want to share around and instead of sending individually, you prefer sending it in an open group and most importantly get credit for sharing it.</p>
+                                
+                            </figure>
+                            <figure>
+                                <figcaption>How Prepared are you?</figcaption>
+                                <p>How do you rate how far you have read and understood a study material? </p>
+                                <p>By writing tests and averaging the scores.</p>
+                            </figure>
+                           
+                        </div>
+                    </div>
+                </div>
+
+        </section>
+
+        
+ 
+{% endblock %}

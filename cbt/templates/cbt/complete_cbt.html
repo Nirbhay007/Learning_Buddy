@@ -1,0 +1,99 @@
+{% extends 'main/base.html'%}
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+    .ps-btn{
+        background-color: #9a0052 !important;
+        color: #fff;
+        transition: 0.25s;
+    }
+	.ps-btn:hover{
+        background-color: #ed017f !important;
+   		color: #000000 !important;
+   		transition: 0.25s;
+    }
+    .ps-btn-success{
+        background-color: #ed017f !important;
+        color: #fff;
+        transition: 0.25s;
+    }
+	.ps-btn-success:hover{
+        background-color: #9a0052 !important;
+   		color: #000000 !important;
+   		transition: 0.25s;
+    }
+	.pagination .active a{
+        background-color: #9a0052 !important;
+        color: #fff !important;
+    }
+    .pagination a:hover{
+       	background-color: #9a0052 !important;
+        color: #fff !important;
+    }
+    
+</style>
+
+<div class="ps-my-account">
+            <div class="container">
+                <form class="ps-form--account ps-tab-root" action=""  method="post">
+                    {% csrf_token %}
+                    <ul class="ps-tab-list">
+                        <li class="active"><a href="#sign-in">Exam Completed</a></li>
+                    </ul>
+                    <div class="ps-tabs">
+                        <div class="ps-tab active" id="sign-in">
+                            <div class="ps-form__content" style="background: #c5c5c5">
+
+                                <div class="form-group" >
+                               <blockquote class="generic-blockquote" >
+								<h4>You scored: {{ cbt.actual_score }} out of {{ cbt.total_score }}</h4>
+								<h5 style="margin-bottom: 15px">Percentage: {{ cbt.percentage }}%</h5>
+								<br>
+							</blockquote>
+                                    
+                                </div>
+                                
+                            </div>
+                            <div class="ps-form__footer">
+                                
+                                <ul class="ps-list--social">
+                                    <li>
+                                    <a class="ps-btn-success" href="{% url 'theory:all_theory' cbt.cbt_category cbt.cbt_level %}"><h5 style="color: #fff">See Theory Questions</h5></a>
+                                </li>
+                                    <li><a class="ps-btn" href="{% url 'main:index' %}"><h5 style="color: #fff">Complete CBT</h5></a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="ps-tab" id="register">
+                            <div class="ps-form__content">
+                                <h5>Register An Account</h5>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" placeholder="Username or email address">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" placeholder="Password">
+                                </div>
+                                <div class="form-group submtit">
+                                    <button class="ps-btn ps-btn--fullwidth">Login</button>
+                                </div>
+                            </div>
+                            <div class="ps-form__footer">
+                                <p>Connect with:</p>
+                                <ul class="ps-list--social">
+                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+
+
+{% endblock %}
